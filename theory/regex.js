@@ -4,7 +4,23 @@ const a = (/(antelope+)(s\b)?/g);
 const b = (/(m|g)oat/g);
 const c = (/(\d{4}-\d{2}-\d{1,2}).*/g);
 
+const d = (/(\d{1,2};\d{1,2}f)*/g) && (/\d{1,}/g);
+const e = (/\[1m/g);
+
+const vt = "ESC[12;45f";
+const vtBold = "ESC[1m";
+
+cursor = () => {
+  if (vt.match(d)) {
+    let arr = vt.match(d);
+    let line = arr[0], column = arr[1];
+    return `Line: ${line} Column: ${column} `;
+  }
+}
+
+bold = () => {
+  if (vtBold.match(e)) return 1;
+}
 
 
-
-console.log(string.match(c));
+console.log(cursor());
